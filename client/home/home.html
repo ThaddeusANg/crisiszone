@@ -1,0 +1,25 @@
+<head>
+  <title>crisiszone</title>
+</head>
+
+<body>
+  <h1>Welcome to Crisis Zone!</h1>
+
+  {{> home}}
+
+    <ul>
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </ul>
+
+</body>
+
+<template name="home">
+  {{results}}
+  {{location}}
+</template>
+
+<template name="task">
+  <li>{{metadata}}</li>
+</template>
