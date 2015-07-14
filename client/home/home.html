@@ -9,7 +9,7 @@
 
     <ul>
       {{#each tasks}}
-        {{> task}}
+        {{> crisisTemp}}
       {{/each}}
     </ul>
 
@@ -18,8 +18,25 @@
 <template name="home">
   {{results}}
   {{location}}
+    <form>
+    <input type="text" id="lat" value={{lat}}>
+    <input type="text" id="lat" value={{long}}>
+    <input type="submit" value="Search">
+  </form>
+  <ol>
+    {{#each crisis}}
+      {{> crisisTemp}}
+    {{/each}}
+  </ol>
 </template>
 
 <template name="task">
   <li>{{metadata}}</li>
+</template>
+
+
+<template name="crisisTemp">
+  <li class="player {{selected}}">
+    <span class="name">title:{{dc_title}}</span>
+  </li>
 </template>
