@@ -1,5 +1,4 @@
-if (Meteor.isClient) {
-  Session.set('loadData',false);
+Session.set('loadData',false);
 
 Tracker.autorun(function() {  
 console.log(Session.get('loadData'));
@@ -26,17 +25,6 @@ function noLocation() {
 
   Template.body.helpers({
     'click button': function() {
-      event.preventDefault();
-
-        console.log('called search');
-    
-    try {
-      var response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k');
-      console.log("Content"+response);
-      CrisisCollection.insert(response);
-    } catch(error) {
-      console.log(error);
-    }
 
     }
   });
@@ -58,43 +46,11 @@ function noLocation() {
 });
 
   Template.home.events({
-    'click button': function () {
+    'click #search': function () {
       // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+      console.log('clicked on search button');
+      Meteor.call('getLocalCrisis',Session.get('lat'), Session.get('long'));
     }
   });
 
 //end client
-}
-
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-        console.log('called search');
-    
-    try {
-      var response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k');
-      console.log("Content"+response);
-      CrisisCollection.insert(response);
-    } catch(error) {
-      console.log(error);
-    }
-    /*  _.each(names, function (name) {
-        Players.insert({name: name,score: Math.floor(Random.fraction() * 10) * 5});
-          });
-  */
-    });
-
-  Meteor.publish('crisissearch', function() {
-    console.log('called search');
-    
-    try {
-      var response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k');
-      console.log("Content"+response);
-      CrisisCollection.insert(response);
-    } catch(error) {
-      console.log(error);
-    }
-});
-
-}
