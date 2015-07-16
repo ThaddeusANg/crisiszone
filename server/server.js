@@ -17,14 +17,23 @@
 
   Meteor.methods({
     getLocalCrisis: function(lat, lon){
-      console.log('test');
-        console.log('called search');
+      console.log('called search');
     
       try {
-        var response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k&lat,lon,radius='+lat+','+lon+', 5');
-        console.log('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k&lat='+lat+'&lon='+lon+'&radius=5');
-        console.log("Content"+response.);
-        CrisisCollection.insert(response);
+        //svar response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k&lat='+lat+'&lon='+lon+'&radius=5');
+        var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=EtcYxoBYskcMo-cVeC8k&lat=-10.9949&lon=162.5624&radius=50');
+        var obj = JSON.stringify(response);
+        if(!obj){
+          console.log('no detected crises');
+          var response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k&lat=-10.9949&lon=162.5624&radius=50');
+          var obj = JSON.stringify(response);
+        }else{
+        //sconsole.log("Content"+response);
+        //CrisisCollection.insert(obj);
+      }
+      console.log("String JSON:::::"+obj);
+      var json=JSON.parse(obj);
+      console.log(json.data[0].dc_title);
       } catch(error) {
         console.log(error);
       }
