@@ -9,3 +9,5 @@ autopublish
 insecure
 iron:router
 http
+twbs:bootstrap
+dburles:google-maps

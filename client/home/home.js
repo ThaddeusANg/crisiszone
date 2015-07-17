@@ -1,18 +1,16 @@
+  // initialize session variables
 Session.set('loadData',false);
+Session.setDefault('loc', 0);
 
 Tracker.autorun(function() {  
-console.log(Session.get('loadData'));
-  if (Session.get('loadData') ==false) {
-  console.log('inside');    
-    var crisissearch = Meteor.subscribe("crisissearch");
-    Session.set('searching', ! crisissearch.ready());
-    Session.set('loadData',true);
+console.log('Session.loadData'+Session.get('loadData'));
+
+  if (Session.get('loadData') ==false){
+    console.log('inside');   
   }
 });
 
-  // counter starts at 0
-  Session.setDefault('loc', 0);
-  Session.set
+
 
 function foundLocation(location) {
   Session.set('lat',location.coords.latitude);
@@ -25,7 +23,7 @@ function noLocation() {
 
   Template.body.helpers({
     'click button': function() {
-
+      //unused
     }
   });
 
@@ -36,10 +34,10 @@ function noLocation() {
   'crisis': function () {
       return CrisisCollection.find();
     },
-    'lat':function(){
+  'lat':function(){
       return Session.get('lat');
     },
-    'long':function(){
+  'long':function(){
       return Session.get('long');
     }
 
