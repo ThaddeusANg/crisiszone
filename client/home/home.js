@@ -2,13 +2,13 @@
 Session.set('loadData',false);
 Session.setDefault('loc', 0);
 
-Tracker.autorun(function() {  
-console.log('Session.loadData'+Session.get('loadData'));
+// Tracker.autorun(function() {  
+// console.log('Session.loadData'+Session.get('loadData'));
 
-  if (Session.get('loadData') ==false){
-    console.log('inside');   
-  }
-});
+//   if (Session.get('loadData') ==false){
+//     console.log('inside');   
+//   }
+// });
 
 
 
@@ -44,8 +44,12 @@ function noLocation() {
 });
 
   Template.home.events({
-    'click #search': function () {
+    'click #search': function (event) {
       // increment the counter when button is clicked
+      event.preventDefault();
+        if (Session.get('loadData') ==false){
+          console.log('inside');   
+        }
       console.log('clicked on search button');
       Meteor.call('getLocalCrisis',Session.get('lat'), Session.get('long'));
     }

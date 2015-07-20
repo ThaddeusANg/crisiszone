@@ -10,6 +10,8 @@
         if(!obj){
           console.log('no detected crises');
           var response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k&lat=-10.9949&lon=162.5624&radius=50');
+          Session.set('lat',-10.9949);
+          Session.set('long', 162.5624);
           var obj = JSON.stringify(response);
         }else{
         //sconsole.log("Content"+response);

@@ -6,7 +6,7 @@
 <form id="coordinates" action="action">
   <div class="panel-group top-label" id="accordion">
   <!--START ACCORDIAN PANEL SECTION-->
-    <div class="panel panel-default login">
+    <div class="panel panel-default">
       <!--START ACCORDIAN HEADER SECTION-->
       <div class="panel-heading">
         <h4 class="panel-title">Coordinates<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></a></h4>
@@ -17,6 +17,21 @@
             <div class="panel-body">
               <p>Latitude</p><input type="text" id="lat" value={{lat}}>
               <p>Longitude</p><input type="text" id="lat" value={{long}}>
+            </div>
+          </div>
+          <!--END ACCORDIAN CONTENT SECTION-->
+          </div>
+          <!--END ACCORDIAN PANEL SECTION-->
+              <div class="panel panel-default">
+      <!--START ACCORDIAN HEADER SECTION-->
+      <div class="panel-heading">
+        <h4 class="panel-title">Map<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a></h4>
+      </div>
+        <!--END ACCORDIAN HEADER SECTION-->
+          <!--START ACCORDIAN CONTENT SECTION-->
+          <div id="collapseTwo" class="panel-collapse collapse in">
+            <div class="panel-body">
+            {{> map}}
             </div>
           </div>
           <!--END ACCORDIAN CONTENT SECTION-->
