@@ -51,7 +51,7 @@ function noLocation() {
           console.log('inside');   
         }
       console.log('clicked on search button');
-      Meteor.call('getLocalCrisis',Session.get('lat'), Session.get('long'));
+      //Meteor.call('getLocalCrisis',Session.get('lat'), Session.get('long'));
     }
   });
 

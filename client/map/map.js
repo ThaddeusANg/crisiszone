@@ -17,34 +17,36 @@ Template.home.events({
 		console.log("Inside Map response for search with loaded");
 		GoogleMaps.ready('map', function(map) {
 			center: map.instance.setCenter(new google.maps.LatLng(Session.get('lat'),Session.get('long')));
-			google.maps.event.addListenerOnce(map.instance, 'idle', function(){
-			// do something when all other changes to the map have completed
-			console.log("Redraw map");
-			google.maps.event.trigger(map.instance, 'resize');
-		});
-			
-			// return{
-			// 	center: map.instance.setCenter(new google.maps.LatLng(Session.get('lat'),Session.get('long'))),
-			// 	zoom:8
-			// };
-		});	
+
+      var populationOptions = {
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: map.instance,
+      center: new google.maps.LatLng(Session.get('lat'),Session.get('long')),
+      radius: 10000
+    };
+        cityCircle = new google.maps.Circle(populationOptions);
+        google.maps.event.trigger(map.instance,'resize');
+
+	});	
+
+
 	}
 });
-
-
 
 Template.map.helpers({  
   mapOptions: function() {
   	console.log("latitude: "+Session.get('lat'));
   	console.log("longitude: "+Session.get('long'));
     if (GoogleMaps.loaded()) {
+
       return {
         center: new google.maps.LatLng(Session.get('lat'),Session.get('long')),
         zoom: 8
       };
     }
-  },
-  newLocation: function(){
-	
   }
 });
