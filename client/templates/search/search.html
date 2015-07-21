@@ -1,0 +1,32 @@
+<template name="search">
+  {{location}}
+  <div class="col-md-3 col-sm-8"></div>
+  <!--spacer div-->
+  <div class="col-md-6 col-sm-8">
+<form id="coordinates" action="action">
+  <div class="panel-group top-label" id="accordion">
+  <!--START ACCORDIAN PANEL SECTION-->
+    <div class="panel panel-default">
+      <!--START ACCORDIAN HEADER SECTION-->
+      <div class="panel-heading">
+        <h4 class="panel-title">Coordinates<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></a></h4>
+      </div>
+        <!--END ACCORDIAN HEADER SECTION-->
+          <!--START ACCORDIAN CONTENT SECTION-->
+          <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <p>Latitude</p><input type="text" id="lat" value={{lat}}>
+              <p>Longitude</p><input type="text" id="lat" value={{long}}>
+            </div>
+          </div>
+          <!--END ACCORDIAN CONTENT SECTION-->
+          </div>
+          <!--END ACCORDIAN PANEL SECTION-->
+      </div>
+      <!--END ACCORDIAN -->
+      <button id="search">Search</button>
+</form>
+</div>
+  <div class="col-md-3 col-sm-8"></div>
+  <!--spacer div-->
+</template>

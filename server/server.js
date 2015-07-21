@@ -9,7 +9,7 @@
         var obj = JSON.stringify(response);
         if(!obj){
           console.log('no detected crises');
-          var response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k&lat=-10.9949&lon=162.5624&radius=50');
+          response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k&lat=-10.9949&lon=162.5624&radius=50');
           Session.set('lat',-10.9949);
           Session.set('long', 162.5624);
           var obj = JSON.stringify(response);
@@ -19,7 +19,7 @@
       }
       console.log("String JSON:::::"+obj);
       var json=JSON.parse(obj);
-      console.log(json.data[0].dc_title);
+      console.log(response.data[0].dc_title);
       } catch(error) {
         console.log(error);
       }

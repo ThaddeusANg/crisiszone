@@ -1,0 +1,59 @@
+
+
+.footer {
+	width: 100%;
+	height: 100px;
+	background-color: #3366FF;
+	padding-top: 10px;
+	position: absolute;
+	bottom: 0;
+	border-top: 2px solid black !important;
+}
+
+.footer-image {
+	width: 200px;
+	height: 35px;
+	opacity: .5;
+}
+
+.footer .page-content {
+	padding: inherit;
+}
+
+
+
+
+.footer-icon {
+	color: white;
+	opacity: .5;
+	position: relative;
+	margin-right: 0px;
+	float: right;
+	margin-top: 0px;
+	display: inline-block;
+	margin-left: 40px;
+}
+
+.footer-icon:hover {
+	opacity: 1;
+	color: white;
+}
+
+#copyright {
+	display: block;
+	clear: both;
+}
+
+.right {
+	background-color: white;
+    right: 0px;
+    border: 4px solid black;
+}
+
+.left {
+	background-color: white;
+    position: absolute;
+    width:150px;
+    left: 0px;
+    border: 4px solid black;
+}
