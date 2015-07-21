@@ -47,14 +47,10 @@ header {
     border: 4px solid black;
 }
 
-/* Styles the dropdown menu */
-
-/*This styles the search tab icon that
-  drops down the hidden search bar*/
-
-/*This sets the border for the searchbox */
-
-/*Adds in a circular profile picture formatted for the navbar*/
+.title{
+	font-weight: bold;
+	text-align: center;
+}
 
 /* End of navigation bar */
 /* ********************* */

@@ -11,3 +11,7 @@ iron:router
 http
 twbs:bootstrap
 dburles:google-maps
+accounts-password
+accounts-ui
+accounts-base
+wylio:mandrill

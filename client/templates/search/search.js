@@ -1,14 +1,21 @@
   // initialize session variables
 Session.set('loadData',false);
 Session.setDefault('loc', 0);
+Session.set('loginResponse', false);
+Session.set('currentEmail',"dummy");
 
-// Tracker.autorun(function() {  
-// console.log('Session.loadData'+Session.get('loadData'));
-
-//   if (Session.get('loadData') ==false){
-//     console.log('inside');   
-//   }
-// });
+function login(email, password){
+      console.log("email"+email+" password: "+password);
+        Meteor.loginWithPassword(email, password, function(err){
+        if (err){
+          console.log('---login failed---');
+        }else{
+          Session.set('loginResponse', true);
+          Session.set('currentEmail',email);
+          console.log('---login succeeded---');
+        }
+      });
+}
 
 
 
@@ -44,15 +51,22 @@ function noLocation() {
 });
 
   Template.search.events({
-    'click #search': function (event) {
+    'click #search': function (event,template) {
       // increment the counter when button is clicked
       event.preventDefault();
+      login(template.find('#email').value, template.find('#password').value);
+
         if (Session.get('loadData') ==false){
           console.log('inside');   
         }
       console.log('clicked on search button');
       Meteor.call('getLocalCrisis',Session.get('lat'), Session.get('long'));
       Router.go('home');
+    },
+    'click #register': function (event) {
+      // increment the counter when button is clicked
+      event.preventDefault();
+      Router.go('registration');
     }
   });
 

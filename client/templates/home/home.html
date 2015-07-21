@@ -1,7 +1,4 @@
 <template name="home">
-  <div class="col-md-3 col-sm-8"></div>
-  <!--spacer div-->
-  <div class="col-md-6 col-sm-8">
 <form id="coordinates" action="action">
   <div class="panel-group top-label" id="accordion">
   <!--START ACCORDIAN PANEL SECTION-->
@@ -17,12 +14,22 @@
           </div>
           <!--END ACCORDIAN CONTENT SECTION-->
           </div>
+  <div class="panel panel-default">
+      <!--START ACCORDIAN HEADER SECTION-->
+      <div class="panel-heading">
+        <h4 class="panel-title">Map<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a></h4>
+      </div>
+          <div id="collapseTwo" class="panel-collapse collapse in">
+            <div class="panel-body">
+            {{showContacts}}
+            </div>
+          </div>
+          <!--END ACCORDIAN CONTENT SECTION-->
+          </div>
           <!--END ACCORDIAN PANEL SECTION-->
       </div>
       <!--END ACCORDIAN -->
       <button id="report">Report</button>
 </form>
-</div>
-  <div class="col-md-3 col-sm-8"></div>
   <!--spacer div-->
 </template>

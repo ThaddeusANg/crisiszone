@@ -3,6 +3,12 @@ Session.set('loadData',false);
 Session.setDefault('loc', 0);
 
 Template.home.helpers({
+  'showContacts': function(){
+    var selectedEmail = Session.get('currentEmail');
+    console.log(users.findOne({email:selectedEmail}));
+    return users.findOne({email:selectedEmail});
+}
+
 });
 
 Template.home.events({

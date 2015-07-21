@@ -1,22 +1,43 @@
 <template name="search">
   {{location}}
-  <div class="col-md-3 col-sm-8"></div>
-  <!--spacer div-->
-  <div class="col-md-6 col-sm-8">
 <form id="coordinates" action="action">
   <div class="panel-group top-label" id="accordion">
   <!--START ACCORDIAN PANEL SECTION-->
     <div class="panel panel-default">
       <!--START ACCORDIAN HEADER SECTION-->
       <div class="panel-heading">
-        <h4 class="panel-title">Coordinates<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></a></h4>
+        <h2>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Log In</a>
+        </h2>
       </div>
         <!--END ACCORDIAN HEADER SECTION-->
           <!--START ACCORDIAN CONTENT SECTION-->
-          <div id="collapseOne" class="panel-collapse collapse in">
+          <div id="collapseOne" class="panel-collapse collapse">
             <div class="panel-body">
-              <p>Latitude</p><input type="text" id="lat" value={{lat}}>
-              <p>Longitude</p><input type="text" id="lat" value={{long}}>
+            <form id="login-form" action="action">
+            	<p class="top-label">Email Address</p>
+            	<input type="email" class="form-control input-lg" id="email"/>
+            	<p class="top-label">Password</p>
+            	<input type="password" class="form-control input-lg"  id="password"/>
+            </form>
+
+            </div>
+          </div>
+          <!--END ACCORDIAN CONTENT SECTION-->
+          </div>
+          <!--END ACCORDIAN PANEL SECTION-->
+
+      <div class="panel panel-default">
+      <!--START ACCORDIAN HEADER SECTION-->
+      <div class="panel-heading">
+        <h2><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Coordinates</a></h2>
+      </div>
+        <!--END ACCORDIAN HEADER SECTION-->
+          <!--START ACCORDIAN CONTENT SECTION-->
+          <div id="collapseTwo" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <p class="top-label">Latitude</p><input type="text" class="form-control input-lg" id="lat" value={{lat}}>
+              <p class="top-label">Longitude</p><input type="text" class="form-control input-lg" id="lat" value={{long}}>
             </div>
           </div>
           <!--END ACCORDIAN CONTENT SECTION-->
@@ -24,9 +45,14 @@
           <!--END ACCORDIAN PANEL SECTION-->
       </div>
       <!--END ACCORDIAN -->
-      <button id="search">Search</button>
+      <div class="row">
+      	<div class="col-md-6 col-sm-8">
+      	<h2><button id="search">Search</button></h2>
+      	</div>
+      	<div class="col-md-6 col-sm-8">
+      		<h2><button id="register" class="right">Register</button></h2>
+      </div>
+      </div>
 </form>
-</div>
-  <div class="col-md-3 col-sm-8"></div>
   <!--spacer div-->
 </template>

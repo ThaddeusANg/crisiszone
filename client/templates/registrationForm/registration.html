@@ -1,0 +1,58 @@
+<template name="registration">
+    <h1>Registration</h1>
+        <form id="register-form" action="action">
+            <!--begin accordion-->
+            <div class="panel-group top-label" id="accordion">
+                <div class="panel panel-default login">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><h3>Name</h3></a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="col-md-6"><input type="text" class="form-control input-lg" id="first_name" placeholder="First Name"></div>
+                            <div class="col-md-6"><input type="text" class="form-control input-lg" id="last_name" placeholder="Last Name"></div>
+                        </div>
+                    </div>
+                </div>
+            <div class="panel panel-default login">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><h3>Login Information</h3></a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="col-md-12 top-label"><input type="text" class="form-control input-lg" id="username" placeholder="Username"></div>
+                        <div class="col-md-12  top-label"><input type="email" class="form-control input-lg" id="email" placeholder="E-mail Address"></div>
+                        <div class="col-md-6 top-label"><input type="password" class="form-control input-lg" id="password" placeholder="Password"></div>
+                        <div class="col-md-6 top-label"><input type="password" class="form-control input-lg" id="rtpassword" placeholder="Re-enter password"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default login">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><h3>Emergency Contact</h3></a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <div class="panel-body">
+                    <div class="col-md-4 top-label">
+                        <input type="text" class="form-control input-lg" id="cont" placeholder="Contact">
+                    </div>
+                    <div class="col-md-4 top-label">
+                        <input type="text" class="form-control input-lg" id="cont_email" placeholder="email address">
+                    </div>
+                    <div class="col-md-4 top-label">
+                        <input type="text" class="form-control input-lg" id="cont_phone" placeholder="phone number">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--term accordion-->       
+        <h2><button id="register">Submit</button></h2>
+        </div>
+        </form>
+</template>

@@ -22,14 +22,14 @@ Template.map.onCreated(function() {
   });
 });
 
-Template.home.events({
-	'click #search': function (event) {
-		console.log("Inside Map response for search with loaded");
-		GoogleMaps.ready('map', function(map) {
-			center: map.instance.setCenter(new google.maps.LatLng(Session.get('lat'),Session.get('long')));
-	 });	
-	}
-});
+// Template.home.events({
+// 	'click #search': function (event) {
+// 		console.log("Inside Map response for search with loaded");
+// 		GoogleMaps.ready('map', function(map) {
+// 			center: map.instance.setCenter(new google.maps.LatLng(Session.get('lat'),Session.get('long')));
+// 	 });	
+// 	}
+// });
 
 Template.map.helpers({  
   mapOptions: function() {
