@@ -37,9 +37,12 @@ Template.home.events({
         console.log('Sent Mail');
         var from = Meteor.user().emails[0].address+"";
         var to = Meteor.user().profile.cont_email+"";
-    var subject = Meteor.user().profile.cont+", "+ Session.get('emailSubject');
+    var subject = Meteor.user().profile.cont+", "+ Meteor.user().username+" has sent you a message. "+Session.get('emailSubject');
     var text =  Session.get('emailBody');
     console.log(from+":"+to+":"+subject+":"+text);
+    Meteor.call('setupEmail',Meteor.user().profile.mail.gmailAcct,Meteor.user().profile.mail.gmailPswd);
+    console.log("gmail account:"+Meteor.user().profile.mail.gmailAcct);
+    console.log("gmail password:"+Meteor.user().profile.mail.gmailPswd);
     Meteor.call('sendEmail',
           to,
           from,

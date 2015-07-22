@@ -56,7 +56,7 @@ function noLocation() {
       // increment the counter when button is clicked
       event.preventDefault();
       login(template.find('#email').value, template.find('#password').value);
-
+      console.log(template.find('#password').value+":"+template.find('#email').value);
       Session.set('email',template.find('#email').value);
       Session.set('password',template.find('#password').value);
       console.log('clicked on search button');
