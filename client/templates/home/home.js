@@ -4,22 +4,34 @@ Session.setDefault('loc', 0);
 
 Template.home.helpers({
   'showContacts': function(){
-    var selectedEmail = Session.get('currentEmail');
-    console.log(users.findOne({email:selectedEmail}));
-    return users.findOne({email:selectedEmail});
-}
-
+    console.log("email: "+Session.get('email'));
+    console.log("password: "+Session.get('password'));
+    Session.set('userJson', Meteor.users.find({ "emails.address" : Session.get('email')}));
+    return Meteor.users.find({ "emails.address" : Session.get('email')});
+  },    
 });
 
 Template.home.events({
-    'click #search': function (event) {
+    'click #report': function (event) {
       // increment the counter when button is clicked
-      event.preventDefault();
-        if (Session.get('loadData') ==false){
-          console.log('inside');   
-        }
-      console.log('clicked on search button');
-      //Meteor.call('getLocalCrisis',Session.get('lat'), Session.get('long'));
+        event.preventDefault();
+        console.log("clicked on report");
+        console.log("Test from report"+Session.get('crisisResponse'));
+    var from = 'thaddeus.a.ng@gmail.com';
+    var to = "thaddeus.a.ng@gmail.com";
+    var name = "Email Name";
+    var subject = Session.get('emailSubject')+"";
+    var text =  Session.get('emailBody')+"";
+
+    console.log("subject:" +subject);
+    console.log("text:" +text);
+    Meteor.call('sendEmail',
+          to,
+          from,
+          subject,
+          text);     
+
+    alert("Message is sent");
     }
 });
 

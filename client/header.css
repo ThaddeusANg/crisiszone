@@ -38,13 +38,13 @@ header {
 .right {
     position: absolute;
     right: 0px;
-    border: 4px solid black;
+    border: 1px solid black;
 }
 
 .left {
     position: absolute;
     left: 0px;
-    border: 4px solid black;
+    border: 1px solid black;
 }
 
 .title{

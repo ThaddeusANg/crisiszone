@@ -50,17 +50,26 @@ function noLocation() {
 
 });
 
+
   Template.search.events({
     'click #search': function (event,template) {
       // increment the counter when button is clicked
       event.preventDefault();
       login(template.find('#email').value, template.find('#password').value);
 
-        if (Session.get('loadData') ==false){
-          console.log('inside');   
-        }
+      Session.set('email',template.find('#email').value);
+      Session.set('password',template.find('#password').value);
       console.log('clicked on search button');
-      Meteor.call('getLocalCrisis',Session.get('lat'), Session.get('long'));
+      //Session.set('crisisResponse', Meteor.call('getLocalCrisis',Session.get('lat'), Session.get('long')));
+      Meteor.call('getLocalCrisis',Session.get('lat'), Session.get('long'),function(err, result){
+        if (err){
+          console.log('---call failed---');
+        }else{
+          console.log('---login succeeded---'+result);
+          Session.set('emailBody',"User's last known position is lat: "+Session.get('lat')+", long: "+Session.get('long')+". Please see report from GDACS.  "+result);
+          Session.set('emailSubject',"Emergency Message from CrisisZone");
+        }
+      });
       Router.go('home');
     },
     'click #register': function (event) {

@@ -3,12 +3,24 @@ Meteor.startup(function() {
 
 });
 
+Session.set('changeMap', 0);
+var mapDep=new Tracker.Dependency;
+
+
+Tracker.autorun(function() {  
+console.log('autorun');
+  GoogleMaps.ready('map',function(map){
+    google.maps.event.trigger(map.instance,'resize');  
+  });
+
+});
+
 Template.map.onCreated(function() {  
   GoogleMaps.ready('map', function(map) {
   	Session.set('map', map);
      console.log("I'm ready!");
-     Session.get('map').setCenter(new google.maps.LatLng(37.8136, -144.9631));
-     google.maps.event.trigger(Session.get('map'),'resize');
+     //Session.get('map').setCenter(new google.maps.LatLng(37.8136, -144.9631));
+     //google.maps.event.trigger(map.instance,'resize');
   });
 });
 
@@ -17,7 +29,8 @@ Template.home.events({
 		console.log("Inside Map response for search with loaded");
 		GoogleMaps.ready('map', function(map) {
 			center: map.instance.setCenter(new google.maps.LatLng(Session.get('lat'),Session.get('long')));
-
+      mapDep.changed();
+      Session.set('changeMap',1);
       var populationOptions = {
       strokeColor: '#FF0000',
       strokeOpacity: 0.8,
@@ -44,7 +57,7 @@ Template.map.helpers({
     if (GoogleMaps.loaded()) {
 
       return {
-        center: new google.maps.LatLng(Session.get('lat'),Session.get('long')),
+        center: new google.maps.LatLng(-37.8136, 144.9631),
         zoom: 8
       };
     }

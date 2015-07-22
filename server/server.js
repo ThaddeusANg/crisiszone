@@ -1,3 +1,4 @@
+
 Meteor.publish("userData", function () {
   if (this.userId) {
     return Meteor.users.find({_id: this.userId});
@@ -8,29 +9,28 @@ Meteor.publish("userData", function () {
 
   Meteor.methods({
     getLocalCrisis: function(lat, lon){
+      
       console.log('called search');
-    
+      //Session.set('emailSubject',"No Crisis");
+      //Session.set('emailBody',"There are no crises in the immediate area. User's last known position is lat: "+Session.get('lat')+", long: "+Session.get('long'));
       try {
         //svar response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k&lat='+lat+'&lon='+lon+'&radius=5');
         var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=EtcYxoBYskcMo-cVeC8k&lat=-10.9949&lon=162.5624&radius=50');
+        //var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=EtcYxoBYskcMo-cVeC8k&lat='+lat+'&lon='+lon+'&radius=50');
         var obj = JSON.stringify(response);
-        if(!obj){
-          console.log('no detected crises');
-          response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k&lat=-10.9949&lon=162.5624&radius=50');
-          Session.set('lat',-10.9949);
-          Session.set('long', 162.5624);
+        if(obj){
+          console.log('detected crises'+response.data[0].dc_title);
+          return response.data[0].dc_title;
+          //Session.set('emailBody',"Crisis in the immediate area. User's last known position is lat: "+Session.get('lat')+", long: "+Session.get('long')+". Please see report from GDACS.  "+response.data[0].dc_title);
+          //Session.set('emailSubject',"Detected Crisis");
           var obj = JSON.stringify(response);
         }else{
-        //sconsole.log("Content"+response);
-        //CrisisCollection.insert(obj);
+          console.log("no crises");
       }
-      console.log("String JSON:::::"+obj);
-      var json=JSON.parse(obj);
-      console.log(response.data[0].dc_title);
-      } catch(error) {
-        console.log(error);
-      }
-    },
+    } catch(error) {
+      console.log(error);
+    }
+  },
     validate: function(user){
       console.log('called validate');
     
@@ -76,20 +76,3 @@ Meteor.publish("userData", function () {
       }
     }
   });
-
-// server code
-Mandrill.config({
-  username: process.env.MANDRILL_API_USER,  // the email address you log into Mandrill with. Only used to set MAIL_URL.
-  key: process.env.MANDRILL_API_KEY  // get your Mandrill key from https://mandrillapp.com/settings/index
-  // port: 587,  // defaults to 465 for SMTP over TLS
-  // host: 'smtp.mandrillapp.com',  // the SMTP host
-  // baseUrl: 'https://mandrillapp.com/api/1.0/'  // update this in case Mandrill changes its API endpoint URL or version
-});
-
-// Meteor method code
-this.unblock();
-try {
-  [result = ]Mandrill.<category>.<call>(options, [callback]);
-} catch (e) {
-  // handle error
-}
