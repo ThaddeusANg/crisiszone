@@ -12,9 +12,9 @@ Meteor.publish("userData", function () {
       
       console.log('called search');
       try {
-        var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=e4YjdoAEMxgDg8E2wdnJ&lat=41.1723&lon=-73.2282355&radius=50');
+        //var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=e4YjdoAEMxgDg8E2wdnJ&lat=41.1723&lon=-73.2282355&radius=50');
         //var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=e4YjdoAEMxgDg8E2wdnJ&lat=-10.9949&lon=162.5624&radius=50');
-        //var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=e4YjdoAEMxgDg8E2wdnJ&lat='+lat+'&lon='+lon+'&radius=50');
+        var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=e4YjdoAEMxgDg8E2wdnJ&lat='+lat+'&lon='+lon+'&radius=50');
         console.log('lat'+lat+'long'+lon);
         var obj = JSON.stringify(response);
         console.log(obj);

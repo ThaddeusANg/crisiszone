@@ -68,13 +68,10 @@ function noLocation() {
           console.log('---call failed---');
         }else{
           console.log('---login succeeded---'+result);
-          Session.set('emailBody',"User's last known position is lat: "+Session.get('lat')+", long: "+Session.get('long')+".  No Detected Crises Nearby.");
-          Session.set('emailSubject',"Message from CrisisZone");
-          if(result!=undefined){
+          // Session.set('emailBody',"User's last known position is lat: "+Session.get('lat')+", long: "+Session.get('long')+".  No Detected Crises Nearby.");
+          // Session.set('emailSubject',"Message from CrisisZone");
             Session.set('emailBody',"User's last known position is lat: "+Session.get('lat')+", long: "+Session.get('long')+". Please see report from GDACS.  "+result);
             Session.set('emailSubject',"Emergency Message from CrisisZone");
-          }
-          
         }
       });
       Router.go('home');
