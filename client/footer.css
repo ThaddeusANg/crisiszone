@@ -1,13 +1,14 @@
 
 
 .footer {
-	width: 100%;
-	height: 100px;
-	background-color: #3366FF;
-	padding-top: 10px;
-	position: absolute;
-	bottom: 0;
-	border-top: 2px solid black !important;
+position: relative;
+  bottom: 0;
+  float: left;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #3366FF;
+  border-top: 2px solid black !important;
 }
 
 .footer-image {
@@ -15,12 +16,6 @@
 	height: 35px;
 	opacity: .5;
 }
-
-.footer .page-content {
-	padding: inherit;
-}
-
-
 
 
 .footer-icon {
@@ -42,6 +37,7 @@
 #copyright {
 	display: block;
 	clear: both;
+	font-size: 9px
 }
 
 .right {

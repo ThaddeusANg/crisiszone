@@ -11,19 +11,13 @@ Meteor.publish("userData", function () {
     getLocalCrisis: function(lat, lon){
       
       console.log('called search');
-      //Session.set('emailSubject',"No Crisis");
-      //Session.set('emailBody',"There are no crises in the immediate area. User's last known position is lat: "+Session.get('lat')+", long: "+Session.get('long'));
       try {
-        //svar response = HTTP.get('http://api.sigimera.org/v1/crises?auth_token=EtcYxoBYskcMo-cVeC8k&lat='+lat+'&lon='+lon+'&radius=5');
-        var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=EtcYxoBYskcMo-cVeC8k&lat=-10.9949&lon=162.5624&radius=50');
-        //var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=EtcYxoBYskcMo-cVeC8k&lat='+lat+'&lon='+lon+'&radius=50');
+        //var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=EtcYxoBYskcMo-cVeC8k&lat=-10.9949&lon=162.5624&radius=50');
+        var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=EtcYxoBYskcMo-cVeC8k&lat='+lat+'&lon='+lon+'&radius=50');
         var obj = JSON.stringify(response);
         if(obj){
           console.log('detected crises'+response.data[0].dc_title);
           return response.data[0].dc_title;
-          //Session.set('emailBody',"Crisis in the immediate area. User's last known position is lat: "+Session.get('lat')+", long: "+Session.get('long')+". Please see report from GDACS.  "+response.data[0].dc_title);
-          //Session.set('emailSubject',"Detected Crisis");
-          var obj = JSON.stringify(response);
         }else{
           console.log("no crises");
       }

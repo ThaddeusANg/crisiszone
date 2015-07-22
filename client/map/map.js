@@ -19,8 +19,6 @@ Template.map.onCreated(function() {
   GoogleMaps.ready('map', function(map) {
   	Session.set('map', map);
      console.log("I'm ready!");
-     //Session.get('map').setCenter(new google.maps.LatLng(37.8136, -144.9631));
-     //google.maps.event.trigger(map.instance,'resize');
   });
 });
 
