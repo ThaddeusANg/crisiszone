@@ -1,12 +1,11 @@
 <template name="registration">
-    <h1>Registration</h1>
         <form id="register-form" action="action">
             <!--begin accordion-->
             <div class="panel-group top-label" id="accordion">
                 <div class="panel panel-default login">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><h4>Name</h4></a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><h4 class='title'>Registration</h4></a>
                         </h4>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in">
@@ -19,7 +18,7 @@
             <div class="panel panel-default login">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><h4>Login Information</h4></a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><h4 class='title'>Login Information</h4></a>
                     </h4>
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
@@ -34,7 +33,7 @@
             <div class="panel panel-default login">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><h4>Emergency Contact</h4></a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><h4 class='title'>Emergency Contact*</h4></a>
                     </h4>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
@@ -48,13 +47,16 @@
                     <div class="col-md-4 top-label">
                         <input type="text" class="form-control input-lg" id="cont_phone" placeholder="phone number">
                     </div>
+                    <div class="col-md-`1 top-label">
+                        Please use someone you can reach reliably by email or phone as your emergency contact.
+                    </div>
                 </div>
             </div>
         </div>
         <div class="panel panel-default login">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><h4>Email Information</h4></a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><h4 class='title'>Email Information*</h4></a>
                     </h4>
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse">
@@ -65,11 +67,12 @@
                     <div class="col-md-6 top-label">
                         <input type="Password" class="form-control input-lg" id="gmailPswd" placeholder="gmail password">
                     </div>
+                    <div class="col-md-12 top-label">*This information is used exclusively for sending emergency messages to your contacts.  We will never divulge or send email without your express permission</div>
                 </div>
             </div>
         </div>
         <!--term accordion-->       
-        <h2><button id="register">Submit</button></h2>
+        <h3 class='title'><button id="register">Register</button></h3>
         </div>
         </form>
 </template>
