@@ -50,6 +50,9 @@ Template.registration.events({
       Session.set('cont_email',template.find('#cont_email').value);
       Session.set('cont_phone',template.find('#cont_phone').value);
 
+      Session.set('gmailAcct',template.find('#gmailAcct').value);
+      Session.set('gmailPswd',template.find('#gmailPswd').value);
+
       console.log("username"+Session.get('username')+"email"+Session.get('email')+" password: "+Session.get('password'));
       console.log("first_name"+Session.get('first_name')+" last_name: "+Session.get('last_name'));
       console.log("contact"+Session.get('cont'));
@@ -63,7 +66,11 @@ Template.registration.events({
         "profile":{
           "cont":Session.get('cont'),
           "cont_email":Session.get('cont_email'),
-          "cont_phone":Session.get('cont_phone')
+          "cont_phone":Session.get('cont_phone'),
+          "mail":{
+            "gmailAcct":Session.get('gmailAcct'),
+            "gmailPswd":Session.get('gmailPswd')
+          }
         }
       };
 

@@ -1,5 +1,4 @@
 <template name="home">
-<div class="row">
   <div class="panel-group" id="accordion">
   <!--START ACCORDIAN PANEL SECTION-->
   <div class="panel panel-default">
@@ -8,8 +7,13 @@
         <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Map</a></h4>
       </div>
       <div id="collapseOne" class="panel-collapse collapse in">
-        <div class="panel-body row">
+        <div class="panel-body">
+        {{username}}
+        {{contName}}
+        {{contEmail}}
+
           {{> map}}
+        
         </div>
       </div>
           <!--END ACCORDIAN CONTENT SECTION-->
@@ -18,7 +22,7 @@
           <!--END ACCORDIAN PANEL SECTION-->
   </div>
       <!--END ACCORDIAN -->
-      </div>
+
 
   <!--spacer div-->
 </template>
