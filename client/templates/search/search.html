@@ -30,15 +30,19 @@
       <div class="panel panel-default">
       <!--START ACCORDIAN HEADER SECTION-->
       <div class="panel-heading">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><h4 class='title'>Coordinates</h4></a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        <h4 class='title'>Coordinates</h4>
+        </a>
       </div>
         <!--END ACCORDIAN HEADER SECTION-->
           <!--START ACCORDIAN CONTENT SECTION-->
           <div id="collapseTwo" class="panel-collapse collapse in">
             <div class="panel-body">
             <p>To Test crisis detection - lat=-10.9949 lon=162.5624</p>
-              <p class="top-label">Latitude</p><input type="text" class="form-control input-lg" id="lat" value={{lat}}>
-              <p class="top-label">Longitude</p><input type="text" class="form-control input-lg" id="long" value={{long}}>
+              <p class="top-label">Latitude</p>
+              <input type="text" class="form-control input-lg" id="lat" value={{lat}}>
+              <p class="top-label">Longitude</p>
+              <input type="text" class="form-control input-lg" id="long" value={{long}}>
             </div>
           </div>
           <!--END ACCORDIAN CONTENT SECTION-->
@@ -47,10 +51,13 @@
       </div>
       <!--END ACCORDIAN -->
       <div class="row">
-      	<div class="col-md-6 col-sm-8">
+      	<div class="col-md-4 col-sm-8">
       	<h2><button id="search">Search</button></h2>
       	</div>
-      	<div class="col-md-6 col-sm-8">
+        <div class="col-md-4 col-sm-8">
+        <h2><button id="panic" class='title-img'>Panic</button></h2>
+        </div>
+      	<div class="col-md-4 col-sm-8">
       		<h2><button id="register" class="right">Register</button></h2>
       </div>
       </div>

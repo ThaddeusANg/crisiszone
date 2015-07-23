@@ -3,10 +3,22 @@ Session.set('loadData',false);
 Session.setDefault('loc', 0);
 Meteor.subscribe("userData");
 
+var OnBeforeActions;
+
+OnBeforeActions = {
+    loginRequired: function(pause) {
+      if (!Meteor.userId()) {
+        this.render('search');
+        return pause();
+      }
+    }
+};
+
+Router.onBeforeAction(OnBeforeActions.loginRequired, {
+    only: ['settings', 'anotherPriveRoute']
+});
 Template.home.helpers({
   'showContacts': function(){
-    console.log("email: "+Session.get('email'));
-    console.log("password: "+Session.get('password'));
     Session.set('userJson', Meteor.users.find({ "emails.address" : Session.get('email')}));
     return Meteor.users.find({ "emails.address" : Session.get('email')});
   },
@@ -37,13 +49,16 @@ Template.home.events({
         console.log('Sent Mail');
         var from = Meteor.user().emails[0].address+"";
         var to = Meteor.user().profile.cont_email+"";
-    var subject = Meteor.user().profile.cont+", "+ Meteor.user().username+" has sent you a message. "+Session.get('emailSubject');
-    var text =  Session.get('emailBody');
-    console.log(from+":"+to+":"+subject+":"+text);
-    Meteor.call('setupEmail',Meteor.user().profile.mail.gmailAcct,Meteor.user().profile.mail.gmailPswd);
-    console.log("gmail account:"+Meteor.user().profile.mail.gmailAcct);
-    console.log("gmail password:"+Meteor.user().profile.mail.gmailPswd);
-    Meteor.call('sendEmail',
+        var subject = Session.get('emailSubject');
+        var text =  Meteor.user().profile.cont+", "+ 
+          Meteor.user().username+" has sent you a message. "+
+          Session.get('emailBody');
+
+        Meteor.call('setupEmail',
+          Meteor.user().profile.mail.gmailAcct,
+          Meteor.user().profile.mail.gmailPswd);
+
+        Meteor.call('sendEmail',
           to,
           from,
           subject,

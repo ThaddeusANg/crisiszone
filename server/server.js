@@ -1,29 +1,37 @@
 
 Meteor.publish("userData", function () {
+  console.log("Checking before publish"+this.userId);
   if (this.userId) {
+    console.log(this.userId);
     return Meteor.users.find({_id: this.userId});
   } else {
+    Meteor.users.update({}, {$set : { "resume.loginTokens" : [] }}, {multi:true});
     this.ready();
   }
 });
 
   Meteor.methods({
+    clean: function(){
+      if(this.userId){
+        Meteor.users.update({}, {$set : { "resume.loginTokens" : [] }}, {multi:true});
+      console.log("Purge active accounts");
+  }else{
+    console.log("---no active accounts");
+  }
+    },
     getLocalCrisis: function(lat, lon){
       
       console.log('called search');
       try {
-        //var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=e4YjdoAEMxgDg8E2wdnJ&lat=41.1723&lon=-73.2282355&radius=50');
-        //var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=e4YjdoAEMxgDg8E2wdnJ&lat=-10.9949&lon=162.5624&radius=50');
-        var response = HTTP.get('http://api.sigimera.org/v1/crises.json?auth_token=e4YjdoAEMxgDg8E2wdnJ&lat='+lat+'&lon='+lon+'&radius=50');
-        console.log('lat'+lat+'long'+lon);
-        var obj = JSON.stringify(response);
-        console.log(obj);
-        if(obj){
-          console.log('detected crises'+response.data[0].dc_title);
-          return response.data[0].dc_title;
-        }else{
-          console.log("no crises");
-      }
+       var response = HTTP.get(
+        'http://api.sigimera.org/v1/crises.json?auth_token=e4YjdoAEMxgDg8E2wdnJ&lat='+
+        lat+'&lon='+
+        lon+'&radius=50');
+
+        console.log(response.statusCode);
+          //console.log('detected crises'+response.data[0].dc_title);
+          return response;
+
     } catch(error) {
       console.log(error);
     }
@@ -63,7 +71,6 @@ Meteor.publish("userData", function () {
             console.log('XXX---ERROR PASSWORD MUST CONTAIN UPPER CASE LETTERS---XXX')
             VALID =  false;
           }
-
 
           if(valid){
             Accounts.createUser(user);

@@ -1,10 +1,14 @@
+Meteor.subscribe("userData");
 Template.report.helpers({
+	'contEmail':function(){
+		return Meteor.user().profile.cont_email;
+	},
 	'emailBody': function(){
-    return Session.get('emailBody');
-  },
-  'emailSubject':function(){
-  	return Session.get('emailSubject');
-  }
+		return Session.get('emailBody');
+	},
+	'emailSubject':function(){
+		return Session.get('emailSubject');
+	}
 });
 
 Template.report.events({ 
@@ -15,7 +19,6 @@ Template.report.events({
 		var to = template.find('#email-field').value;
 		var subject = template.find('#subject-field').value;
 		var text =  template.find('#msg-field').value;
-		console.log(from+":"+to+":"+subject+":"+text);
 		Meteor.call('sendEmail',
           to,
           from,
