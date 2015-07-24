@@ -53,7 +53,8 @@ Template.home.events({
           subject,
           text);     
 
-    alert("Message is sent");
+    alert("Message sent to "+Meteor.user.profile.cont);
+    Router.go('search');
     }
 });
 

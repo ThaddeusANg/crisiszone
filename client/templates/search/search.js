@@ -3,7 +3,7 @@ Session.keys={};
 Session.set('loadData',false);
 Session.setDefault('loc', 0);
 Session.set('loginResponse', false);
-
+Meteor.subscribe("userData");
 
 function login(email, password){
   console.log("email"+email+" password: "+password+"User below");
@@ -68,26 +68,37 @@ function noLocation() {
   alert('no location');
 }
 
-  Template.body.helpers({
-    'click button': function() {
-      //unused
-    }
-  });
-
   Template.search.helpers({
   'location': function () {
     navigator.geolocation.getCurrentPosition(foundLocation, noLocation);
   },
-  'crisis': function () {
-      return CrisisCollection.find();
-    },
   'lat':function(){
       return Session.get('lat');
     },
   'long':function(){
       return Session.get('long');
+    },
+    'username': function () {
+      return Meteor.user().username;
+    },
+    'email':function(){
+      return Meteor.user().emails[0].address;
+    },
+    'cont':function(){
+      return  Meteor.user().profile.cont;
+    },
+    'cont_email':function(){
+      return  Meteor.user().profile.cont_email;
+    },
+    'cont_phone':function(){
+      return  Meteor.user().profile.cont_phone;
+    }, 
+    'cont_carrier':function(){
+      return  Meteor.user().profile.cont_carrier;
+    },
+    'gmail':function(){
+      return Meteor.user().profile.mail.gmailAcct;
     }
-
 });
 
 
@@ -95,42 +106,34 @@ function noLocation() {
     'click #search': function (event,template) {
       // increment the counter when button is clicked
       event.preventDefault();
-      login(template.find('#email').value, template.find('#password').value);
-      console.log("current user below");
-      console.log(Meteor.user());
 
+      Session.set('lat',template.find('#lat').value);
+      Session.set('long',template.find('#long').value);
 
-          Session.set('lat',template.find('#lat').value);
-          Session.set('long',template.find('#long').value);
-          //Session.set('crisisResponse', Meteor.call('getLocalCrisis',Session.get('lat'), Session.get('long')));
-          callSigimera(Session.get('lat'), Session.get('long'));
+      callSigimera(Session.get('lat'), Session.get('long'));
 
-          Deps.autorun(function (c) {
-            var result = Session.get('emailBody');
-            if (!result) return;
-            c.stop();
-            console.log("afteremailBody"+Session.get('emailBody'));
-          });
+      Deps.autorun(function (c) {
+        var result = Session.get('emailBody');
+          if (!result) return;
+          c.stop();
+          console.log("afteremailBody"+Session.get('emailBody'));
+        });
+      Router.go('home');
+      },
 
-          Router.go('home');
-        },
-    'click #panic': function(event, template){
+      'click #panic': function(event, template){
       event.preventDefault();
-      Meteor.subscribe("userData");
-      login(template.find('#email').value, template.find('#password').value);
 
-        callSigimera(Session.get('lat'), Session.get('long'));
+      callSigimera(Session.get('lat'), Session.get('long'));
 
-        var from = Meteor.user().emails[0].address+"";
-        var to = Meteor.user().profile.cont_email+","+
-          Meteor.user().profile.cont_phone+"@"+
-          Meteor.user().profile.cont_carrier;
+      var from = Meteor.user().emails[0].address+"";
+      var to = Meteor.user().profile.cont_email+","+
+        Meteor.user().profile.cont_phone+"@"+
+        Meteor.user().profile.cont_carrier;
 
-
-        Deps.autorun(function (c) {
+      Deps.autorun(function (c) {
           var result = Session.get('emailBody');
-          var loginResponse = Session.get('loginResponse');
-          if (!result||!loginResponse) return;
+          if (!result) return;
           else{
             c.stop();
             var subject = Session.get('emailSubject');
