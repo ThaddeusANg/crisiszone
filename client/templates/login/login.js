@@ -30,12 +30,8 @@ function login(email, password){
 
   Template.login.events({
     'click #login': function (event,template) {
-      console.log("Inside login button");
-      // increment the counter when button is clicked
       event.preventDefault();
       login(template.find('#email').value, template.find('#password').value);
-      console.log("current user below");
-      console.log(Meteor.user());
     },
     'click #register': function (event) {
       // increment the counter when button is clicked

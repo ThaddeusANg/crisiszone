@@ -1,9 +1,7 @@
 var response;    
 
 Meteor.publish("userData", function () {
-  console.log("Checking before publish"+this.userId);
   if (this.userId) {
-    console.log(this.userId);
     return Meteor.users.find({_id: this.userId});
   } else {
     Meteor.users.update({}, {$set : { "resume.loginTokens" : [] }}, {multi:true});
