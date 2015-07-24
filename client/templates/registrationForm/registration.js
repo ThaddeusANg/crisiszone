@@ -36,47 +36,25 @@ function validateFields(){
 Template.registration.events({
 	 'click #register' : function(event, template) {
       event.preventDefault();
-      console.log('register button clicked');
-      Session.set('first_name',template.find('#first_name').value);
-      Session.set('last_name',template.find('#last_name').value);
-      //name info
-      Session.set('username',template.find('#username').value);
-      Session.set('email',template.find('#email').value);
-      Session.set('password',template.find('#password').value);
-      Session.set('rtpassword',template.find('#rtpassword').value); 
-      //end login info
-      
-      Session.set('cont',template.find('#cont').value);
-      Session.set('cont_email',template.find('#cont_email').value);
-      Session.set('cont_phone',template.find('#cont_phone').value);
-
-      Session.set('gmailAcct',template.find('#gmailAcct').value);
-      Session.set('gmailPswd',template.find('#gmailPswd').value);
-
-      console.log("username"+Session.get('username')+"email"+Session.get('email')+" password: "+Session.get('password'));
-      console.log("first_name"+Session.get('first_name')+" last_name: "+Session.get('last_name'));
-      console.log("contact"+Session.get('cont'));
-      console.log("cont_email"+Session.get('cont_email')+" cont_phone: "+Session.get('cont_phone'));
-
-
       var user={
-        "username":Session.get('username'),
-        "email":Session.get('email'),
-        "password":Session.get('password'),
+        "username":template.find('#username').value,
+        "email":template.find('#email').value,
+        "password":template.find('#password').value,
         "profile":{
-          "cont":Session.get('cont'),
-          "cont_email":Session.get('cont_email'),
-          "cont_phone":Session.get('cont_phone'),
+          "cont":template.find('#cont').value,
+          "cont_email":template.find('#cont_email').value,
+          "cont_phone":template.find('#cont_phone').value,
+          "cont_carrier":template.find('#cont_carrier').value,
           "mail":{
-            "gmailAcct":Session.get('gmailAcct'),
-            "gmailPswd":Session.get('gmailPswd')
+            "gmailAcct":template.find('#gmailAcct').value,
+            "gmailPswd":template.find('#gmailPswd').value
           }
         }
       };
 
       //Meteor.call(obj);
         // Trim and validate the input
-        if(Session.get('password')==Session.get('rtpassword')){
+        if(template.find('#password').value==template.find('#rtpassword').value){
           Meteor.call('validate',user);
         }else{
           console.log('XXX---ERROR PASSWORD DOES NOT MATCH---XXX')

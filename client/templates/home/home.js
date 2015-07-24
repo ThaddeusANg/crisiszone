@@ -3,20 +3,7 @@ Session.set('loadData',false);
 Session.setDefault('loc', 0);
 Meteor.subscribe("userData");
 
-var OnBeforeActions;
 
-OnBeforeActions = {
-    loginRequired: function(pause) {
-      if (!Meteor.userId()) {
-        this.render('search');
-        return pause();
-      }
-    }
-};
-
-Router.onBeforeAction(OnBeforeActions.loginRequired, {
-    only: ['settings', 'anotherPriveRoute']
-});
 Template.home.helpers({
   'showContacts': function(){
     Session.set('userJson', Meteor.users.find({ "emails.address" : Session.get('email')}));
@@ -48,7 +35,9 @@ Template.home.events({
         // var contuser = Meteor.users.findOne({_id: this.userId}).emails.address;
         console.log('Sent Mail');
         var from = Meteor.user().emails[0].address+"";
-        var to = Meteor.user().profile.cont_email+"";
+        var to = Meteor.user().profile.cont_email+","+
+          Meteor.user().profile.cont_phone+"@"+
+          Meteor.user().profile.cont_carrier;
         var subject = Session.get('emailSubject');
         var text =  Meteor.user().profile.cont+", "+ 
           Meteor.user().username+" has sent you a message. "+

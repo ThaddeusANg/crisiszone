@@ -17,6 +17,7 @@ Meteor.methods({
   'setupEmail':function(gmailAcct, gmailPswd){
     smtp.username=gmailAcct;
     smtp.password=gmailPswd;
+    console.log("Set up email URL");
     process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
   },
   sendEmail: function (to, from, subject, text) {

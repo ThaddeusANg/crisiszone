@@ -122,7 +122,9 @@ function noLocation() {
         callSigimera(Session.get('lat'), Session.get('long'));
 
         var from = Meteor.user().emails[0].address+"";
-        var to = Meteor.user().profile.cont_email+"";
+        var to = Meteor.user().profile.cont_email+","+
+          Meteor.user().profile.cont_phone+"@"+
+          Meteor.user().profile.cont_carrier;
 
 
         Deps.autorun(function (c) {
