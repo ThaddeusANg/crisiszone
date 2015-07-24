@@ -7,36 +7,55 @@
       <!--START ACCORDIAN HEADER SECTION-->
       <div class="panel-heading">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-        <h4 class='title'>Log In</h4>
+        <h4 class='title'>Account Information</h4>
+        </a>
+      </div>
+        <!--END ACCORDIAN HEADER SECTION-->
+        <!--START ACCORDIAN CONTENT SECTION-->
+        <div id="collapseOne" class="panel-collapse collapse">
+        <div class="panel-body">
+          <ul>
+            <li>Username: {{username}}</li>
+            <li>Your Account Email: {{email}}</li>
+            <li>Send Alerts From: {{gmail}}</li>
+          </ul>
+        </div>
+      </div>
+      <!--END ACCORDIAN CONTENT SECTION-->
+    </div>
+    <!--END ACCORDIAN PANEL SECTION-->
+    <div class="panel panel-default">
+      <!--START ACCORDIAN HEADER SECTION-->
+      <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        <h4 class='title'>Emergency Contact</h4>
         </a>
       </div>
         <!--END ACCORDIAN HEADER SECTION-->
           <!--START ACCORDIAN CONTENT SECTION-->
-          <div id="collapseOne" class="panel-collapse collapse">
+          <div id="collapseTwo" class="panel-collapse collapse">
             <div class="panel-body">
-            <form id="login-form" action="action">
-            	<p class="top-label">Email Address</p>
-            	<input type="email" class="form-control input-lg" id="email"/>
-            	<p class="top-label">Password</p>
-            	<input type="password" class="form-control input-lg"  id="password"/>
-            </form>
-
+            <ul>
+              <li>Emergency Contact Name: {{cont}}</li>
+              <li>Send Alert Emails To: {{cont_email}}</li>
+              <li>Send Alert Texts To: {{cont_phone}}</li>
+              <li>Emergency Contact Cell Provider: {{cont_carrier}}</li>
+            </ul>
             </div>
           </div>
           <!--END ACCORDIAN CONTENT SECTION-->
           </div>
-          <!--END ACCORDIAN PANEL SECTION-->
-
+          <!--END ACCORDIAN PANEL SECTION-->    
       <div class="panel panel-default">
       <!--START ACCORDIAN HEADER SECTION-->
       <div class="panel-heading">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
         <h4 class='title'>Coordinates</h4>
         </a>
       </div>
         <!--END ACCORDIAN HEADER SECTION-->
           <!--START ACCORDIAN CONTENT SECTION-->
-          <div id="collapseTwo" class="panel-collapse collapse in">
+          <div id="collapseThree" class="panel-collapse collapse">
             <div class="panel-body">
             <p>To Test crisis detection - lat=-10.9949 lon=162.5624</p>
               <p class="top-label">Latitude</p>

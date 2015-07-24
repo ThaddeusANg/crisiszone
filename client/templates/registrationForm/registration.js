@@ -41,6 +41,8 @@ Template.registration.events({
         "email":template.find('#email').value,
         "password":template.find('#password').value,
         "profile":{
+          "first_name":template.find('#first_name').value,
+          "last_name":template.find('#last_name').value,
           "cont":template.find('#cont').value,
           "cont_email":template.find('#cont_email').value,
           "cont_phone":template.find('#cont_phone').value,
@@ -55,7 +57,19 @@ Template.registration.events({
       //Meteor.call(obj);
         // Trim and validate the input
         if(template.find('#password').value==template.find('#rtpassword').value){
-          Meteor.call('validate',user);
+          var response = Meteor.call('validate',user);
+          Deps.autorun(function (c) {
+            console.log(response);
+            if (!response) return;
+            c.stop();
+            console.log(response);
+            if(response=="registered"){
+              Router.go('login');
+            }else{
+              alert(response);
+            }
+          });
+          
         }else{
           console.log('XXX---ERROR PASSWORD DOES NOT MATCH---XXX')
         }

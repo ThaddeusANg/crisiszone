@@ -13,7 +13,7 @@ Template.header.events({
 		Meteor.logout(function(err){
 			console.log(err);
 		});
-		Router.go('search');
+		Router.go('login');
 		console.log(Meteor.user());
 	}
 })

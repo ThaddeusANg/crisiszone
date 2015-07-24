@@ -1,0 +1,39 @@
+<template name="login">
+
+  <div class="panel-group top-label" id="accordion">
+  <!--START ACCORDIAN PANEL SECTION-->
+    <div class="panel panel-default login">
+      <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        <h4 class='title'>Log In</h4>
+        </a>
+      </div>
+    <!--END ACCORDIAN HEADER SECTION-->
+    <!--START ACCORDIAN CONTENT SECTION-->
+      <div id="collapseOne" class="panel-collapse collapse">
+        <div class="panel-body">
+          <form id="login-form" action="action">
+            <p class="top-label">Email Address</p>
+            <input type="email" class="form-control input-lg" id="email"/>
+            <p class="top-label">Password</p>
+            <input type="password" class="form-control input-lg"  id="password"/>
+          </form>
+        </div>
+      </div>
+            <!--END ACCORDIAN CONTENT SECTION-->
+    </div>
+  </div>
+          <!--END ACCORDIAN PANEL SECTION-->
+      <!--END ACCORDIAN -->
+      <div class="row">
+        <div class="col-md-4 col-sm-8">
+        <h2><button id="login">Login</button></h2>
+        </div>
+        <div class="col-md-4 col-sm-8">
+        </div>
+        <div class="col-md-4 col-sm-8">
+          <h2><button id="register" class="right">Register</button></h2>
+        </div>
+      </div>
+  <!--spacer div-->
+</template>
