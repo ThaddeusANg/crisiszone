@@ -96,8 +96,8 @@ function noLocation() {
     'cont_carrier':function(){
       return  Meteor.user().profile.cont_carrier;
     },
-    'gmail':function(){
-      return Meteor.user().profile.mail.gmailAcct;
+    'mandrillKey':function(){
+      return Meteor.user().profile.mail.mandrillKey;
     }
 });
 
@@ -142,8 +142,7 @@ function noLocation() {
               Session.get('emailBody');
             
             Meteor.call('setupEmail',
-              Meteor.user().profile.mail.gmailAcct,
-              Meteor.user().profile.mail.gmailPswd
+              Meteor.user().profile.mail.mandrillKey
             );
 
             Meteor.call('sendEmail',

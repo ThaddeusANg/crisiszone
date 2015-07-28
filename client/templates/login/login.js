@@ -4,21 +4,22 @@ Session.set('loadData',false);
 Session.setDefault('loc', 0);
 Session.set('loginResponse', false);
 
+function badLogin(flag){ 
+  var invalid = $('#badLogin'); 
+  if(flag==true)
+    invalid.hide(); 
+  else
+    invalid.show();
+} 
 
 function login(email, password){
   console.log("email"+email+" password: "+password+"User below");
   console.log(Meteor.user());
   Meteor.loginWithPassword(email, password, function(err){
     if (err){
-      console.log('---login failed---'+err);
+      badLogin(false);
     }else{
-      Session.set('loginResponse', "Done");
-      console.log('---login response---');
-      console.log(Meteor.user());
-
-      if (!err) {
-        return Router.go('search');
-      }
+      Router.go('/');
     }
   });
 }
@@ -40,4 +41,7 @@ function login(email, password){
     },
   });
 
+Template.login.rendered = function(){ 
+  badLogin(true);
+} 
 //end client

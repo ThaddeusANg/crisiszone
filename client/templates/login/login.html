@@ -10,8 +10,9 @@
       </div>
     <!--END ACCORDIAN HEADER SECTION-->
     <!--START ACCORDIAN CONTENT SECTION-->
-      <div id="collapseOne" class="panel-collapse collapse">
+      <div id="collapseOne" class="panel-collapse collapse in">
         <div class="panel-body">
+        <p id="badLogin">Invalid Login</p>
           <form id="login-form" action="action">
             <p class="top-label">Email Address</p>
             <input type="email" class="form-control input-lg" id="email"/>
@@ -26,14 +27,8 @@
           <!--END ACCORDIAN PANEL SECTION-->
       <!--END ACCORDIAN -->
       <div class="row">
-        <div class="col-md-4 col-sm-8">
-        <h2><button id="login">Login</button></h2>
-        </div>
-        <div class="col-md-4 col-sm-8">
-        </div>
-        <div class="col-md-4 col-sm-8">
-          <h2><button id="register" class="right">Register</button></h2>
-        </div>
+        <h2><button id="login" class="col-md-6 col-xs-12">Login</button></h2>
+        <h2><button id="register" class="col-md-6 col-xs-12">Register</button></h2>
       </div>
   <!--spacer div-->
 </template>

@@ -10,8 +10,8 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <div class="col-md-6"><input type="text" class="form-control input-lg" id="first_name" placeholder="First Name"></div>
-                            <div class="col-md-6"><input type="text" class="form-control input-lg" id="last_name" placeholder="Last Name"></div>
+                            <div class="col-xs-6"><input type="text" class="form-control input-lg" id="first_name" placeholder="First Name"></div>
+                            <div class="col-xs-6"><input type="text" class="form-control input-lg" id="last_name" placeholder="Last Name"></div>
                         </div>
                     </div>
                 </div>
@@ -23,10 +23,20 @@
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div class="col-md-12 top-label"><input type="text" class="form-control input-lg" id="username" placeholder="Username"></div>
-                        <div class="col-md-12  top-label"><input type="email" class="form-control input-lg" id="email" placeholder="E-mail Address"></div>
-                        <div class="col-md-6 top-label"><input type="password" class="form-control input-lg" id="password" placeholder="Password"></div>
-                        <div class="col-md-6 top-label"><input type="password" class="form-control input-lg" id="rtpassword" placeholder="Re-enter password"></div>
+                    <ul>
+                        <li id="emailError">Email Cannot Be Null</li>
+                        <li id="pswdUser">Password Cannot Be the Same as Username</li>
+                        <li id="pswdLength">Password Must Be Longer than 8 Characters</li>
+                        <li id="pswdNum">Password Must Contain Numbers</li>
+                        <li id="pswdUpper">Password Must Contain Uppercase Letters</li>
+                        <li id="pswdLower">Password Must Contain Lowercase Letters</li>
+                        <li id="pswdMatch">Passwords Must Match</li>
+                    </ul>
+                        <div class="col-xs-12 top-label"><input type="text" class="form-control input-lg" id="username" placeholder="Username"></div>                      
+                        <div class="col-xs-12  top-label"><input type="email" class="form-control input-lg" id="email" placeholder="E-mail Address"></div>
+                        <div class="col-xs-6 top-label"><input type="password" class="form-control input-lg" id="password" placeholder="Password"></div>
+                        
+                        <div class="col-xs-6 top-label"><input type="password" class="form-control input-lg" id="rtpassword" placeholder="Re-enter password"></div>
                     </div>
                 </div>
             </div>
@@ -38,16 +48,16 @@
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
                     <div class="panel-body">
-                    <div class="col-md-6 top-label">
+                    <div class="col-xs-6 top-label">
                         <input type="text" class="form-control input-lg" id="cont" placeholder="Contact">
                     </div>
-                    <div class="col-md-6 top-label">
+                    <div class="col-xs-6 top-label">
                         <input type="email" class="form-control input-lg" id="cont_email" placeholder="email address">
                     </div>
-                    <div class="col-md-6 top-label">
+                    <div class="col-xs-6 top-label">
                     <input type="text" class="form-control input-lg" id="cont_phone" placeholder="phone number">
                     </div>
-                    <div class="col-md-6 top-label">
+                    <div class="col-xs-6 top-label">
                         <select id="cont_carrier" class="form-control input-lg">
                         <option value="txt.att.net">ATT</option>
                         <option value="vtext.com">Verizon</option>
@@ -57,7 +67,7 @@
                         </select>
                     </div>
                     
-                    <div class="col-md-12 top-label">
+                    <div class="col-xs-12 top-label">
                         Please use someone you can reach reliably by email or phone as your emergency contact.
                     </div>
                 </div>
@@ -71,13 +81,11 @@
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse">
                     <div class="panel-body">
-                    <div class="col-md-6 top-label">
-                        <input type="text" class="form-control input-lg" id="gmailAcct" placeholder="gmail">
+                    <p id="mandrill">Invalid Authentication Key</p>
+                    <div class="col-xs-12 top-label">
+                        <input type="text" class="form-control input-lg" id="mandrillKey" placeholder="key">
                     </div>
-                    <div class="col-md-6 top-label">
-                        <input type="Password" class="form-control input-lg" id="gmailPswd" placeholder="gmail password">
-                    </div>
-                    <div class="col-md-12 top-label">**This information is used exclusively for sending emergency messages to your contacts.  We will never divulge or send email without your express permission</div>
+                    <div class="col-xs-12 top-label">**If you require an authorization code please contact CrisisZone Administration</div>
                 </div>
             </div>
         </div>

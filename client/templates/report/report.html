@@ -1,11 +1,11 @@
 <template name="report">
 	<label>Email To:</label>
-	<input type="text" class="form-control" id="email-field" value={{contEmail}}>
+	<input type="text" class="form-control" id="emailTo" value={{contEmail}}>
 	
 	<label>Subject:</label>
-	<input type="text" class="form-control" id="subject-field" value={{emailSubject}}>
+	<input type="text" class="form-control" id="subject" value={{emailSubject}}>
 	
 	<label>Message:</label>
-	<textarea type="text" rows="5" class="form-control" id="msg-field" value={{emailBody}}></textarea>
+	<textarea type="text" rows="5" class="form-control" id="body" value={{emailBody}}></textarea>
 	<h4><button id="report" >Send Report</button></h4>
 </template>	

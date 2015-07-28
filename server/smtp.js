@@ -1,24 +1,28 @@
 smtp = {
-    username: "dummy",   // eg: server@gentlenode.com
-    password: 'dummy',   // eg: 3eeP1gtizk5eziohfervU
-    server:   'smtp.gmail.com',  // eg: mail.gandi.net
+    username: "do_not_reply@crisiszone.com",   // eg: server@gentlenode.com
+    password: '0ABKt9imBFE7ZziZWc1M0Q',   // eg: 3eeP1gtizk5eziohfervU
+    server:   'smtp.mandrillapp.com',  // eg: mail.gandi.net
     port: 25
   }
 
 Meteor.startup(function(){
-  console.log("srvr: "+smtp.username+" srvr pswd: "+smtp.password);
-
- process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
-
+  process.env.MAIL_URL = 'smtp://' + 
+    encodeURIComponent(smtp.username) + ':' + 
+    encodeURIComponent(smtp.password) + '@' + 
+    encodeURIComponent(smtp.server) + ':' + 
+    smtp.port;
 });
 
 
 Meteor.methods({
-  'setupEmail':function(gmailAcct, gmailPswd){
-    smtp.username=gmailAcct;
-    smtp.password=gmailPswd;
-    console.log("Set up email URL");
-    process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
+  'setupEmail':function( mandrillKey){
+    smtp.password=mandrillKey;
+    console.log("Set up email URL with custom Key");
+    process.env.MAIL_URL = 'smtp://' + 
+      encodeURIComponent(smtp.username) + ':' + 
+      encodeURIComponent(smtp.password) + '@' + 
+      encodeURIComponent(smtp.server) + ':' + 
+      smtp.port;
   },
   sendEmail: function (to, from, subject, text) {
     check([to, from, subject, text], [String]);

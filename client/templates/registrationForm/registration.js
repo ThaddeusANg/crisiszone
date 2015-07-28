@@ -1,38 +1,67 @@
-function validateFields(){
-  var emailField = document.getElementById('emailField').value;
-  var passField = document.getElementById('passwordField').value;
+function mandrill(flag){ 
+  var invalid = $('#mandrill'); 
+  if(flag==true)
+    invalid.hide(); 
+  else
+    invalid.show();
+} 
 
-  var both = $('#email-pass-alert-both');
-  var emailEmpty = $('#email-alert');
-  var passEmpty = $('#pass-alert');
+function emailError(flag){ 
+  var invalid = $('#emailError'); 
+  if(flag==true)
+    invalid.hide(); 
+  else
+    invalid.show();
+} 
+ 
+function pswdUser(flag){ 
+  var invalid = $('#pswdUser'); 
+  if(flag==true)
+    invalid.hide(); 
+  else
+    invalid.show();
+} 
+  
+function pswdLength(flag){ 
+  var invalid = $('#pswdLength'); 
+  if(flag==true)
+    invalid.hide(); 
+  else
+    invalid.show();
+} 
+ 
+function pswdNum(flag){ 
+  var invalid = $('#pswdNum'); 
+  if(flag==true)
+    invalid.hide(); 
+  else
+    invalid.show();
+} 
 
-  if(emailField.length == 0 && passField.length == 0){
-    emailEmpty.hide();
-    passEmpty.hide();
-    both.show();
-  }
+function pswdUpper(flag){ 
+  var invalid = $('#pswdUpper'); 
+  if(flag==true)
+    invalid.hide(); 
+  else
+    invalid.show();
+} 
 
-  else if(emailField.length == 0){
-    both.hide();
-    passEmpty.hide();
-    emailEmpty.show();
-  }
+function pswdLower(flag){ 
+  var invalid = $('#pswdLower'); 
+  if(flag==true)
+    invalid.hide(); 
+  else
+    invalid.show();
+} 
 
-  else if(passField.length == 0){
-    both.hide();
-    emailEmpty.hide();
-    passEmpty.show();
-  }
-
-  else if(passField.length > 0  && emailField.length > 0){
-    both.hide();
-    emailEmpty.hide();
-    passEmpty.hide();
-    window.location.href= "../patient-dashboard/dashboard.html";
-  }
-
-}
-
+function pswdMatch(flag){ 
+  var invalid = $('#pswdMatch'); 
+  if(flag==true)
+    invalid.hide(); 
+  else
+    invalid.show();
+} 
+ 
 Template.registration.events({
 	 'click #register' : function(event, template) {
       event.preventDefault();
@@ -48,30 +77,91 @@ Template.registration.events({
           "cont_phone":template.find('#cont_phone').value,
           "cont_carrier":template.find('#cont_carrier').value,
           "mail":{
-            "gmailAcct":template.find('#gmailAcct').value,
-            "gmailPswd":template.find('#gmailPswd').value
+            "mandrillKey":template.find('#mandrillKey').value
           }
         }
       };
 
-      //Meteor.call(obj);
-        // Trim and validate the input
-        if(template.find('#password').value==template.find('#rtpassword').value){
+      var valid=true;
+      console.log(user.profile.mail.mandrillKey);
+      if(user.profile.mail.mandrillKey!='0ABKt9imBFE7ZziZWc1M0Q'){
+            valid=false;
+            mandrill(valid);
+          }else
+          mandrill(true);
+
+      if(user.password.length<8){
+            valid=false;
+            pswdLength(valid);
+          }else
+          pswdLength(true);
+
+          if(user.email==""){
+            valid=false;
+            emailError(valid);
+          }else
+          emailError(true);
+
+          if(user.password==user.username){
+            valid=false;
+            pswdUser(valid)
+          }else
+          pswdUser(true);
+
+          if(user.password!=template.find('#rtpassword').value){
+            valid=false;
+            pswdMatch(valid);
+          }else
+          pswdMatch(true);
+
+          re = /[0-9]/;
+          if(!re.test(user.password)) {
+            valid= false;
+            pswdNum(valid);
+          }else
+          pswdNum(true);
+
+          re = /[a-z]/;
+          if(!re.test(user.password)) {
+            valid = false;
+            pswdLower(valid);
+          }else
+          pswdLower(true);
+
+
+          re = /[A-Z]/;
+          if(!re.test(user.password)) {
+            valid =  false;
+            pswdUpper(valid);
+          }else
+          pswdUpper(true);
+
+        if(valid){
           var response = Meteor.call('validate',user);
+          console.log(response);
           Deps.autorun(function (c) {
-            console.log(response);
-            if (!response) return;
+            if (response==undefined) return;
             c.stop();
-            console.log(response);
-            if(response=="registered"){
-              Router.go('login');
-            }else{
-              alert(response);
-            }
+              Meteor.loginWithPassword(user.email, user.password, function(err){
+                if (err){
+                  console.log('---login failed---'+err);
+                }else{
+                  Router.go('/')
+                }
+              });
           });
           
-        }else{
-          console.log('XXX---ERROR PASSWORD DOES NOT MATCH---XXX')
         }
 }
 });
+
+Template.registration.rendered = function(){ 
+  pswdNum(true);
+  pswdUpper(true);
+  pswdLower(true);
+  pswdUser(true);
+  pswdLength(true);
+  pswdMatch(true);
+  emailError(true);
+  mandrill(true);
+} 

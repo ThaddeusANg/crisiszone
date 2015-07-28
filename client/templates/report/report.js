@@ -1,10 +1,14 @@
 Meteor.subscribe("userData");
 Template.report.helpers({
 	'contEmail':function(){
-		return Meteor.user().profile.cont_email;
+		return Meteor.user().profile.cont_email+","+
+          Meteor.user().profile.cont_phone+"@"+
+          Meteor.user().profile.cont_carrier;
 	},
 	'emailBody': function(){
-		return Session.get('emailBody');
+		return Meteor.user().profile.cont+", "+ 
+          Meteor.user().username+" has sent you a message. "+
+          Session.get('emailBody');
 	},
 	'emailSubject':function(){
 		return Session.get('emailSubject');
@@ -12,20 +16,26 @@ Template.report.helpers({
 });
 
 Template.report.events({ 
-    'click #contactBtn': function(event,template) {
-		event.preventDefault();
-		console.log('Sent Mail');
-		var from = 'do_not_reply@Crisiszone.com';
-		var to = template.find('#email-field').value;
-		var subject = template.find('#subject-field').value;
-		var text =  template.find('#msg-field').value;
-		Meteor.call('sendEmail',
+    'click #report': function (event,template) {
+      // increment the counter when button is clicked
+        event.preventDefault();
+        // var contuser = Meteor.users.findOne({_id: this.userId}).emails.address;
+        console.log('Sent Mail');
+        var from = Meteor.user().emails[0].address+"";
+        var to = template.find('#emailTo').value;
+        var subject = template.find('#subject').value;
+        var text =  template.find('#body').value;
+        Meteor.call('setupEmail',
+          Meteor.user().profile.mail.mandrillKey);
+
+        Meteor.call('sendEmail',
           to,
           from,
           subject,
           text);     
 
-		alert("Message is sent");
-	}
+    alert("Message sent to "+Meteor.user().profile.cont);
+    Router.go('search');
+    }
 });
 
