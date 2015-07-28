@@ -13,8 +13,6 @@ function badLogin(flag){
 } 
 
 function login(email, password){
-  console.log("email"+email+" password: "+password+"User below");
-  console.log(Meteor.user());
   Meteor.loginWithPassword(email, password, function(err){
     if (err){
       badLogin(false);

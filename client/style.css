@@ -27,14 +27,21 @@ body {
   text-align: center;
 }
 
- .button {
+.titlefont{
+  color: #444;
+  margin: 0;
+  font-size: 30px;
+  line-height: 44px;
+  border: 1px solid black;
+  background: white;
+
+}
+ .buttonCustom {
      border: none;
-     background: url('/forms/up.png') no-repeat top left;
      padding: 2px 8px;
  }
- .button:hover {
+ .buttonCustom:hover {
      border: none;
-     background: url('/forms/down.png') no-repeat top left;
      padding: 2px 8px;
  }
 

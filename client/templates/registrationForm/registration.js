@@ -83,7 +83,6 @@ Template.registration.events({
       };
 
       var valid=true;
-      console.log(user.profile.mail.mandrillKey);
       if(user.profile.mail.mandrillKey!='0ABKt9imBFE7ZziZWc1M0Q'){
             valid=false;
             mandrill(valid);
@@ -138,19 +137,7 @@ Template.registration.events({
 
         if(valid){
           var response = Meteor.call('validate',user);
-          console.log(response);
-          Deps.autorun(function (c) {
-            if (response==undefined) return;
-            c.stop();
-              Meteor.loginWithPassword(user.email, user.password, function(err){
-                if (err){
-                  console.log('---login failed---'+err);
-                }else{
-                  Router.go('/')
-                }
-              });
-          });
-          
+          alert("User Account Registered");
         }
 }
 });

@@ -5,38 +5,12 @@ Session.setDefault('loc', 0);
 Session.set('loginResponse', false);
 Meteor.subscribe("userData");
 
-function login(email, password){
-  console.log("email"+email+" password: "+password+"User below");
-  console.log(Meteor.user());
-  Meteor.loginWithPassword(email, password, function(err){
-    if (err){
-      console.log('---login failed---'+err);
-    }else{
-      Session.set('loginResponse', "Done");
-      console.log('---login failed---');
-      console.log(this.userId);
-
-      if (Router.current().route.name === 'login') {
-        // if we are on the login route, we want to redirect the user
-        return Router.go('home');
-      }
-    //   if(!this.userId){
-    //     console.log('---login rejected---');
-    //     Router.go('search');
-    //   }else{
-    //   console.log('---login succeeded FROM"+this.userId+"---');
-    // }
-    }
-  });
-}
-
 function callSigimera(lat, lon){
         Meteor.call('getLocalCrisis',lat, lon,function(err, result){
         if (err){
           console.log('---call failed---');
         }else{
           Session.set('localcrisis', result);
-          console.log(result);
           if(result.statusCode==200){
             console.log('---call returned valid crisis---');
             Session.set('reportShort',result.data[0].dc_title);
@@ -56,7 +30,6 @@ function callSigimera(lat, lon){
           }
         }
       });
-  console.log('---end call---');
 }
 
 function foundLocation(location) {
@@ -116,7 +89,6 @@ function noLocation() {
         var result = Session.get('emailBody');
           if (!result) return;
           c.stop();
-          console.log("afteremailBody"+Session.get('emailBody'));
         });
       Router.go('home');
       },

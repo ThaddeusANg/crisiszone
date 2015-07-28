@@ -23,6 +23,8 @@
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="panel-body">
+                    <div class="alert alert-error">
+                    <h4>Warnings</h4>
                     <ul>
                         <li id="emailError">Email Cannot Be Null</li>
                         <li id="pswdUser">Password Cannot Be the Same as Username</li>
@@ -32,6 +34,7 @@
                         <li id="pswdLower">Password Must Contain Lowercase Letters</li>
                         <li id="pswdMatch">Passwords Must Match</li>
                     </ul>
+                    </div>
                         <div class="col-xs-12 top-label"><input type="text" class="form-control input-lg" id="username" placeholder="Username"></div>                      
                         <div class="col-xs-12  top-label"><input type="email" class="form-control input-lg" id="email" placeholder="E-mail Address"></div>
                         <div class="col-xs-6 top-label"><input type="password" class="form-control input-lg" id="password" placeholder="Password"></div>
@@ -81,7 +84,10 @@
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse">
                     <div class="panel-body">
-                    <p id="mandrill">Invalid Authentication Key</p>
+                    <div class="alert alert-error">
+                        <h4>Warnings</h4>
+                        <p id="mandrill">Invalid Authentication Key</p>
+                    </div>
                     <div class="col-xs-12 top-label">
                         <input type="text" class="form-control input-lg" id="mandrillKey" placeholder="key">
                     </div>

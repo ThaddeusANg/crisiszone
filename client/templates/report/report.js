@@ -20,7 +20,6 @@ Template.report.events({
       // increment the counter when button is clicked
         event.preventDefault();
         // var contuser = Meteor.users.findOne({_id: this.userId}).emails.address;
-        console.log('Sent Mail');
         var from = Meteor.user().emails[0].address+"";
         var to = template.find('#emailTo').value;
         var subject = template.find('#subject').value;

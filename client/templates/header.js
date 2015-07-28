@@ -9,11 +9,12 @@ Template.header.rendered = function() {
 
 Template.header.events({
 	'click #logout':function(){
-		console.log('Clicked logout button');
 		Meteor.logout(function(err){
 			console.log(err);
 		});
 		Router.go('login');
-		console.log(Meteor.user());
+	},
+	'click #title':function(){
+		Router.go('/');
 	}
 })
