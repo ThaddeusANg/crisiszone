@@ -58,6 +58,10 @@ header {
     border: 1px solid black;
 }
 
+.center-text{
+	text-align: center;
+}
+
 
 
 /* End of navigation bar */

@@ -1,0 +1,65 @@
+<template name="settings">
+  <div class="panel-group top-label" id="accordion">
+  <!--START ACCORDIAN PANEL SECTION-->
+    <div class="panel panel-default">
+      <!--START ACCORDIAN HEADER SECTION-->
+      <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        <h4 class='title'>Account Information</h4>
+        </a>
+      </div>
+        <!--END ACCORDIAN HEADER SECTION-->
+        <!--START ACCORDIAN CONTENT SECTION-->
+        <div id="collapseOne" class="panel-collapse collapse">
+        <div class="panel-body">
+            <p class="col-xs-6">First Name<input type="text" class="form-control input-lg" id="first_name" value={{first_name}}></p>
+            <p class="col-xs-6">Last Name<input type="text" class="form-control input-lg" id="last_name" value={{last_name}}></p>
+            <p class="col-xs-6">Username:<input type="text" class="form-control input-lg" id="username" value={{username}}></p>
+            <p class="col-xs-6">Your Account Email:<input type="email" class="form-control input-lg" id="email" value={{email}}></p>
+            <p class="col-xs-12">Mandrill Key:<input type="email" class="form-control input-lg" id="mandrillKey" value={{mandrillKey}}></p>
+        </div>
+      </div>
+      <!--END ACCORDIAN CONTENT SECTION-->
+    </div>
+    <!--END ACCORDIAN PANEL SECTION-->
+    <div class="panel panel-default">
+      <!--START ACCORDIAN HEADER SECTION-->
+      <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        <h4 class='title'>Emergency Contact</h4>
+        </a>
+      </div>
+        <!--END ACCORDIAN HEADER SECTION-->
+          <!--START ACCORDIAN CONTENT SECTION-->
+          <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+            <!---->
+            <p class="col-xs-6 top-label">
+            Emergency Contact Name:<input type="text" class="form-control input-lg" id="cont" value={{cont}}></p>
+
+            <p class="col-xs-6 top-label">Send Alert Emails To<input type="email" class="form-control input-lg" id="cont_email" value={{cont_email}}></p>
+
+            <p class="col-xs-6 top-label">Send Alert Texts To<input type="text" class="form-control input-lg" id="cont_phone" value={{cont_phone}}></p>
+
+            <p class="col-xs-6 top-label">Emergency Contact Cell Provider: {{cont_carrier}}
+            <select id="cont_carrier" class="form-control input-lg">
+                        <option value="txt.att.net">ATT</option>
+                        <option value="vtext.com">Verizon</option>
+                        <option value="tmomail.net">T-mobile</option>
+                        <option value="vmobl.com">Virgin</option>
+                        <option value="pm.sprint.com">Sprint</option>
+                        </select></p>
+                    <!---->
+            </div>
+          </div>
+          <!--END ACCORDIAN CONTENT SECTION-->
+          </div>
+          <!--END ACCORDIAN PANEL SECTION-->    
+      </div>
+      <!--END ACCORDIAN -->
+      <div class="row">
+      	<h2><button id="submit" class="col-md-4 col-xs-12">Submit</button></h2>
+      	<h2><button id="cancel" class="col-md-4 col-md-offset-4 col-xs-12  ">Cancel</button></h2>
+      </div>
+  <!--spacer div-->
+</template>

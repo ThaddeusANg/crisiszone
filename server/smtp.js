@@ -11,6 +11,17 @@ Meteor.startup(function(){
     encodeURIComponent(smtp.password) + '@' + 
     encodeURIComponent(smtp.server) + ':' + 
     smtp.port;
+
+  Accounts.emailTemplates.from = 'Crisiszone <no-reply@crisiszone.com>';
+  Accounts.emailTemplates.siteName = 'Crisiszone';
+  Accounts.emailTemplates.verifyEmail.subject = function(user) {
+    return 'Confirm Your Email Address';
+  };
+
+  Accounts.emailTemplates.verifyEmail.text = function(user, url) {
+    return 'click on the following link to verify your email address: ' + url;
+  };
+
 });
 
 
