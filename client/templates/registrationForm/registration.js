@@ -138,6 +138,7 @@ Template.registration.events({
         if(valid){
           var response = Meteor.call('validate',user);
           alert("User Account Registered");
+          Router.go('/');
         }
 }
 });
