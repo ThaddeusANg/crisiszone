@@ -1,13 +1,11 @@
   // initialize session variables
+  Meteor.subscribe("userData");
 Session.keys={};
 Session.set('loadData',false);
 Session.setDefault('loc', 0);
 Session.set('loginResponse', false);
-Meteor.subscribe("userData");
 
-
-
-  Template.search.helpers({
+  Template.settings.helpers({
     'first_name': function(){
       return Meteor.user().profile.first_name;
     },

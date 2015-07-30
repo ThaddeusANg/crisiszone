@@ -35,15 +35,7 @@ Meteor.publish("userData", function () {
       console.log(error);
     }
   },
-    validate: function(user){
-      console.log('called validate');
-      try {
-            Accounts.createUser(user);
-          } catch(error) {
-            console.log(error);
-      }
-    },
-    update: function(update){
+      update: function(update){
       Meteor.users.update(
         {_id:Meteor.user()._id}, 
         {$set:{
@@ -58,23 +50,59 @@ Meteor.publish("userData", function () {
         }
       });
       console.log(Meteor.user());
+    },
+
+    validate: function(user){
+      console.log('called validate');
+      
+      try {
+        var valid=true;
+          if(user.password.length<8){
+            valid=false;
+            console.log('XXX---ERROR PASSWORD LENGTH REQUIREMENT IS 8 CHARACTERS---XXX');
+            response+=('XXX---ERROR PASSWORD LENGTH REQUIREMENT IS 8 CHARACTERS---XXX');
+          }
+          if(user.email==""){
+            valid=false;
+            console.log('XXX---ERROR MUST ENTER AN EMAIL ADDRESS---XXX');
+            response+=('XXX---ERROR MUST ENTER AN EMAIL ADDRESS---XXX');
+          }
+          if(user.password==user.username){
+            valid=false;
+            console.log('XXX---ERROR PASSWORD MAY NOT EQUAL USERNAME---XXX');
+            response+=('XXX---ERROR PASSWORD MAY NOT EQUAL USERNAME---XXX');
+          }
+
+          re = /[0-9]/;
+          if(!re.test(user.password)) {
+            console.log('\nXXX---ERROR PASSWORD MUST CONTAIN A NUMBER---XXX');
+            valid= false;
+            response+=('XXX---ERROR PASSWORD MUST CONTAIN A NUMBER---XXX');
+          }
+
+          re = /[a-z]/;
+          if(!re.test(user.password)) {
+            console.log('XXX---ERROR PASSWORD MUST CONTAIN LOWER CASE LETTERS---XXX');
+            valid = false;
+            response+=('XXX---ERROR PASSWORD MUST CONTAIN LOWER CASE LETTERS---XXX');
+          }
+
+          re = /[A-Z]/;
+          if(!re.test(user.password)) {
+            console.log('XXX---ERROR PASSWORD MUST CONTAIN UPPER CASE LETTERS---XXX');
+            valid =  false;
+            response+=('XXX---ERROR PASSWORD MUST CONTAIN UPPER CASE LETTERS---XXX');
+          }
+
+          if(valid){
+            Accounts.createUser(user);
+            return "registered";
+          }else{
+            console.log(response);
+            return response;
+          }
+        } catch(error) {
+        console.log(error);
+      }
     }
   });
-
-Accounts.onCreateUser(function(options, user) {
-  // we wait for Meteor to create the user before sending an email
-  Meteor.setTimeout(function() {
-    Accounts.sendVerificationEmail(user._id);
-  }, 2 * 1000);
-
-  return user;
-});
-
-Accounts.validateLoginAttempt(function(attempt){
-  if (attempt.user && attempt.user.emails && !attempt.user.emails[0].verified ) {
-    console.log('email not verified');
-
-    return false; // the login is aborted
-  }
-  return true;
-}); 

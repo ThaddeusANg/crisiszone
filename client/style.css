@@ -31,10 +31,10 @@ body {
   color: #444;
   margin: 0;
   font-size: 30px;
-  line-height: 44px;
+  line-height: 100%;
   border: 1px solid black;
   background: white;
-
+  height:52px;
 }
  .buttonCustom {
      border: none;
